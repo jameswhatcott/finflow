@@ -187,6 +187,79 @@ spring.jpa.hibernate.ddl-auto=update
    - Update the database URL in your application properties
    - Set the database credentials as environment variables
 
+### Deploy with Docker
+
+#### Prerequisites
+- Docker installed on your system
+- Docker Compose installed
+
+#### Development Deployment (H2 Database)
+
+1. **Build and run with Docker Compose**
+   ```bash
+   # Make the deployment script executable
+   chmod +x deploy.sh
+   
+   # Deploy in development mode
+   ./deploy.sh dev
+   ```
+
+2. **Or manually with Docker Compose**
+   ```bash
+   # Build and start the application
+   docker-compose up --build -d
+   
+   # View logs
+   docker-compose logs -f finflow-app
+   
+   # Stop the application
+   docker-compose down
+   ```
+
+3. **Access the application**
+   - Application: http://localhost:8081
+   - H2 Console: http://localhost:8081/h2-console
+
+#### Production Deployment (PostgreSQL)
+
+1. **Deploy with PostgreSQL**
+   ```bash
+   # Deploy in production mode
+   ./deploy.sh prod
+   ```
+
+2. **Or manually with production compose**
+   ```bash
+   # Build and start with PostgreSQL
+   docker-compose -f docker-compose.prod.yml up --build -d
+   
+   # View logs
+   docker-compose -f docker-compose.prod.yml logs -f finflow-app
+   
+   # Stop the application
+   docker-compose -f docker-compose.prod.yml down
+   ```
+
+#### Docker Commands Reference
+
+```bash
+# Build the Docker image
+docker build -t finflow .
+
+# Run the container
+docker run -p 8081:8081 finflow
+
+# Build production image
+docker build -f Dockerfile.prod -t finflow:prod .
+
+# Run with custom environment variables
+docker run -p 8081:8081 \
+  -e SPRING_DATASOURCE_URL=jdbc:postgresql://host:5432/db \
+  -e SPRING_DATASOURCE_USERNAME=user \
+  -e SPRING_DATASOURCE_PASSWORD=pass \
+  finflow:prod
+```
+
 ### Deploy to Heroku
 
 1. **Install Heroku CLI**
