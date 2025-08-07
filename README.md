@@ -40,7 +40,7 @@ Before running this application, ensure you have:
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/yourusername/finflow.git
+git clone https://github.com/jameswhatcott/finflow.git
 cd finflow
 ```
 
