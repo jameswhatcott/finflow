@@ -1,5 +1,5 @@
 # Multi-stage build for production
-FROM openjdk:17-jdk-slim AS builder
+FROM openjdk:22-jdk-slim AS builder
 
 # Set the working directory
 WORKDIR /app
@@ -22,7 +22,7 @@ COPY src src
 RUN ./mvnw clean package -DskipTests -Pprod
 
 # Production runtime stage
-FROM openjdk:17-jdk-slim
+FROM openjdk:22-jdk-slim
 
 # Install curl for healthcheck
 RUN apt-get update && apt-get install -y curl && rm -rf /var/lib/apt/lists/*
