@@ -1,0 +1,169 @@
+/* FinFlow Brand Styles */
+
+:root {
+    /* FinFlow Brand Colors */
+    --finflow-primary: #1E40AF;      /* Deep Blue */
+    --finflow-secondary: #0D9488;    /* Teal */
+    --finflow-accent: #F59E0B;       /* Gold */
+    --finflow-success: #10B981;      /* Green */
+    --finflow-danger: #EF4444;       /* Red */
+    --finflow-warning: #F59E0B;      /* Orange */
+    --finflow-info: #3B82F6;         /* Blue */
+    --finflow-light: #F8FAFC;        /* Light Gray */
+    --finflow-dark: #1F2937;         /* Dark Gray */
+}
+
+/* FinFlow Logo Styling */
+.finflow-logo {
+    transition: transform 0.2s ease-in-out;
+}
+
+.finflow-logo:hover {
+    transform: scale(1.05);
+}
+
+/* FinFlow Brand Buttons */
+.btn-finflow-primary {
+    background: linear-gradient(135deg, var(--finflow-primary), var(--finflow-secondary));
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.btn-finflow-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 12px -1px rgba(0, 0, 0, 0.15);
+}
+
+/* FinFlow Cards */
+.finflow-card {
+    background: white;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    transition: all 0.2s ease-in-out;
+}
+
+.finflow-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+/* FinFlow Navigation */
+.nav-finflow {
+    background: linear-gradient(135deg, var(--finflow-primary), var(--finflow-secondary));
+    box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.1);
+}
+
+.nav-finflow .nav-link {
+    color: rgba(255, 255, 255, 0.9);
+    transition: color 0.2s ease-in-out;
+}
+
+.nav-finflow .nav-link:hover {
+    color: white;
+}
+
+/* FinFlow Stats Cards */
+.stats-card-income {
+    border-left: 4px solid var(--finflow-success);
+}
+
+.stats-card-expense {
+    border-left: 4px solid var(--finflow-danger);
+}
+
+.stats-card-balance {
+    border-left: 4px solid var(--finflow-primary);
+}
+
+.stats-card-change {
+    border-left: 4px solid var(--finflow-accent);
+}
+
+/* FinFlow Form Styling */
+.finflow-input {
+    border: 2px solid #E5E7EB;
+    border-radius: 0.5rem;
+    padding: 0.75rem;
+    transition: all 0.2s ease-in-out;
+}
+
+.finflow-input:focus {
+    border-color: var(--finflow-primary);
+    box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.1);
+    outline: none;
+}
+
+/* FinFlow Table Styling */
+.finflow-table {
+    border-radius: 0.5rem;
+    overflow: hidden;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+}
+
+.finflow-table thead {
+    background: linear-gradient(135deg, var(--finflow-primary), var(--finflow-secondary));
+    color: white;
+}
+
+/* FinFlow Loading Animation */
+.finflow-loading {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: white;
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* FinFlow Success/Error Messages */
+.finflow-success {
+    background: linear-gradient(135deg, var(--finflow-success), #059669);
+    color: white;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin: 1rem 0;
+}
+
+.finflow-error {
+    background: linear-gradient(135deg, var(--finflow-danger), #DC2626);
+    color: white;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin: 1rem 0;
+}
+
+/* FinFlow Responsive Design */
+@media (max-width: 768px) {
+    .finflow-card {
+        margin: 0.5rem;
+    }
+    
+    .btn-finflow-primary {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+/* FinFlow Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --finflow-light: #1F2937;
+        --finflow-dark: #F8FAFC;
+    }
+    
+    .finflow-card {
+        background: #374151;
+        color: white;
+    }
+} 

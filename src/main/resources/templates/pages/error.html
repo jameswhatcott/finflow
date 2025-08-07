@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/main}">
+<head>
+    <title>Error - Personal Finance Tracker</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+    <div layout:fragment="content">
+        <div class="error-container">
+            <h1>Oops! Something went wrong</h1>
+            <div th:if="${error}" class="error-message" th:text="${error}">Error message</div>
+            <div class="error-actions">
+                <a href="/" class="btn-primary">Go to Dashboard</a>
+                <a href="javascript:history.back()" class="btn-secondary">Go Back</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 

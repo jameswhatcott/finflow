@@ -1,0 +1,6 @@
+<!-- src/main/resources/templates/fragments/alert.html -->
+<div th:fragment="alert(type, message)" 
+     th:class="'alert alert-' + ${type}" 
+     th:if="${message != null}">
+    <span th:text="${message}"></span>
+</div>

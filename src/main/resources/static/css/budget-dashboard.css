@@ -1,0 +1,341 @@
+.budget-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.budget-settings-section {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+}
+
+.budget-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.budget-form .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.summary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.summary-card {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.summary-card.income {
+    border-left: 4px solid #28a745;
+}
+
+.summary-card.expense {
+    border-left: 4px solid #dc3545;
+}
+
+.summary-card.budget {
+    border-left: 4px solid #007bff;
+}
+
+.summary-card.remaining {
+    border-left: 4px solid #ffc107;
+}
+
+.summary-card h3 {
+    margin: 0 0 10px 0;
+    font-size: 1.1em;
+    color: #666;
+}
+
+.summary-card .amount {
+    font-size: 2em;
+    font-weight: bold;
+    margin: 0;
+}
+
+.budget-tables-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.budget-table-container {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.budget-table-container h3 {
+    margin: 0 0 20px 0;
+    text-align: center;
+    color: #333;
+}
+
+.budget-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    border: 1px solid #ddd;
+}
+
+.budget-table th,
+.budget-table td {
+    padding: 8px;
+    text-align: left;
+    border: 1px solid #ddd;
+    vertical-align: middle;
+}
+
+.budget-table th {
+    background: #f8f9fa;
+    font-weight: bold;
+    color: #333;
+    font-size: 0.9em;
+    text-align: center;
+}
+
+.budget-table td {
+    background: white;
+}
+
+.budget-table tr:hover td {
+    background: #f8f9fa;
+}
+
+.category-name {
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.category-color {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.amount-cell {
+    font-family: 'Courier New', monospace;
+    font-weight: 500;
+    text-align: right;
+}
+
+.amount-positive {
+    color: #28a745;
+}
+
+.amount-negative {
+    color: #dc3545;
+}
+
+.amount-neutral {
+    color: #6c757d;
+}
+
+.table-total {
+    background: #f8f9fa !important;
+    font-weight: bold;
+}
+
+.table-total td {
+    border-top: 2px solid #dee2e6;
+}
+
+/* Excel-like editable cells */
+.editable-cell {
+    padding: 0 !important;
+    position: relative;
+}
+
+.editable-input {
+    width: 100%;
+    border: none;
+    padding: 8px;
+    font-family: inherit;
+    font-size: inherit;
+    background: transparent;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.editable-input:focus {
+    background: #fff3cd;
+    border: 2px solid #ffc107;
+}
+
+.editable-input.amount-input {
+    font-family: 'Courier New', monospace;
+    text-align: right;
+}
+
+.editable-input.category-input {
+    font-weight: 500;
+}
+
+.readonly-cell {
+    background: #f8f9fa;
+    color: #6c757d;
+    font-style: italic;
+}
+
+.add-row-btn {
+    background: #28a745;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-size: 0.9em;
+}
+
+.add-row-btn:hover {
+    background: #218838;
+}
+
+.delete-row-btn {
+    background: #dc3545;
+    color: white;
+    border: none;
+    padding: 4px 8px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 0.8em;
+    margin-left: 5px;
+}
+
+.delete-row-btn:hover {
+    background: #c82333;
+}
+
+.save-all-btn {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 15px;
+    font-size: 1em;
+}
+
+.save-all-btn:hover {
+    background: #0056b3;
+}
+
+.save-all-btn:disabled {
+    background: #6c757d;
+    cursor: not-allowed;
+} 
+
+/* Action buttons styling */
+.actions-cell {
+    text-align: center;
+    white-space: nowrap;
+}
+
+.edit-row-btn,
+.delete-row-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px 8px;
+    margin: 0 2px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    font-size: 14px;
+}
+
+.edit-row-btn {
+    color: #007bff;
+}
+
+.edit-row-btn:hover {
+    background-color: #e3f2fd;
+    color: #0056b3;
+}
+
+.delete-row-btn {
+    color: #dc3545;
+}
+
+.delete-row-btn:hover {
+    background-color: #f8d7da;
+    color: #c82333;
+}
+
+.edit-row-btn:focus,
+.delete-row-btn:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+/* Make sure buttons are properly aligned */
+.actions-cell button {
+    display: inline-block;
+    vertical-align: middle;
+} 
+
+/* Inline editing styles */
+.data-row.editing {
+    background-color: #fff3cd;
+    border: 2px solid #ffc107;
+}
+
+.data-row.editing .readonly-cell {
+    background-color: #fff3cd;
+}
+
+.category-display,
+.amount-display {
+    display: inline-block;
+    padding: 4px 8px;
+    min-height: 20px;
+    line-height: 1.4;
+}
+
+.category-display {
+    font-weight: 500;
+    color: #333;
+}
+
+.amount-display {
+    font-weight: 600;
+    color: #28a745;
+}
+
+/* When editing, highlight the editable cells */
+.data-row.editing .category-input,
+.data-row.editing .amount-input {
+    background-color: #fff;
+    border: 2px solid #007bff;
+    border-radius: 4px;
+    padding: 4px 8px;
+    font-weight: 500;
+}
+
+/* Save button styling */
+.edit-row-btn .fa-save {
+    color: #28a745;
+}
+
+.edit-row-btn:hover .fa-save {
+    color: #1e7e34;
+} 

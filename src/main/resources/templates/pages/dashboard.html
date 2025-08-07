@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/main}">
+<head>
+    <title>Dashboard</title>
+</head>
+<body>
+    <div layout:fragment="content">
+        <!-- Welcome Section -->
+        <div class="mb-8">
+            <h1 class="text-3xl font-bold text-gray-900 mb-2">FinFlow Dashboard</h1>
+            <p th:if="${user}" class="text-gray-600">Welcome back, <span th:text="${user.name}" class="font-semibold text-blue-600">User</span>!</p>
+        </div>
+        
+        <!-- Stats Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+            <div class="bg-white rounded-lg shadow-md p-6 border-l-4 border-green-500">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <i class="fas fa-arrow-up text-green-500 text-2xl"></i>
+                    </div>
+                    <div class="ml-4">
+                        <div class="text-2xl font-bold text-gray-900" th:text="${'$' + #numbers.formatDecimal(monthlyIncome, 1, 2)}">$0.00</div>
+                        <div class="text-sm text-gray-500">Monthly Income</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-lg shadow-md p-6 border-l-4 border-red-500">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <i class="fas fa-arrow-down text-red-500 text-2xl"></i>
+                    </div>
+                    <div class="ml-4">
+                        <div class="text-2xl font-bold text-gray-900" th:text="${'$' + #numbers.formatDecimal(monthlyExpenses, 1, 2)}">$0.00</div>
+                        <div class="text-sm text-gray-500">Monthly Expenses</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-lg shadow-md p-6 border-l-4 border-blue-500">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <i class="fas fa-wallet text-blue-500 text-2xl"></i>
+                    </div>
+                    <div class="ml-4">
+                        <div class="text-2xl font-bold text-gray-900" th:text="${'$' + #numbers.formatDecimal(totalBalance, 1, 2)}">$0.00</div>
+                        <div class="text-sm text-gray-500">Total Balance</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-lg shadow-md p-6 border-l-4" th:classappend="${netWorthChange >= 0 ? 'border-green-500' : 'border-red-500'}">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <i class="fas fa-chart-line text-2xl" th:class="${netWorthChange >= 0 ? 'text-green-500' : 'text-red-500'}"></i>
+                    </div>
+                    <div class="ml-4">
+                        <div class="text-2xl font-bold text-gray-900" th:text="${'$' + #numbers.formatDecimal(netWorthChange, 1, 2)}">$0.00</div>
+                        <div class="text-sm text-gray-500">Net Worth Change</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Recent Transactions -->
+        <div class="bg-white rounded-lg shadow-md">
+            <div class="px-6 py-4 border-b border-gray-200">
+                <h2 class="text-xl font-semibold text-gray-900">Recent Transactions</h2>
+            </div>
+            <div class="p-6">
+                <div th:if="${recentTransactions == null or recentTransactions.empty}" class="text-center py-8">
+                    <i class="fas fa-receipt text-gray-400 text-4xl mb-4"></i>
+                    <p class="text-gray-500">No transactions found.</p>
+                </div>
+                <div th:if="${recentTransactions != null}" class="space-y-4">
+                    <div th:each="transaction : ${recentTransactions}" class="flex items-center justify-between p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors duration-200">
+                        <div class="flex items-center space-x-4">
+                            <div class="flex-shrink-0">
+                                <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-exchange-alt text-blue-600"></i>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="font-medium text-gray-900" th:text="${transaction.description}">Description</div>
+                                <div class="text-sm text-gray-500">
+                                    <span th:text="${#temporals.format(transaction.transactionDate, 'MMM dd, yyyy')}">Date</span>
+                                    <span th:if="${transaction.merchantName}" th:text="${' • ' + transaction.merchantName}">Merchant</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <div class="font-semibold" 
+                                 th:class="${transaction.amount >= 0 ? 'text-green-600' : 'text-red-600'}"
+                                 th:text="${'$' + #numbers.formatDecimal(transaction.amount, 1, 2)}">$0.00</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

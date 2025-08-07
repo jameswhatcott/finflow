@@ -1,0 +1,46 @@
+<!-- src/main/resources/templates/fragments/navbar.html -->
+<nav th:fragment="navbar" class="nav-finflow shadow-lg border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16">
+            <!-- Logo/Brand -->
+            <div class="flex items-center">
+                <a href="/" class="flex-shrink-0 flex items-center">
+                    <img src="/images/finflow-logo.png" alt="FinFlow Logo" class="finflow-logo h-8 w-auto mr-3">
+                    <span class="text-xl font-bold text-white">FinFlow</span>
+                </a>
+            </div>
+            
+            <!-- Navigation Links -->
+            <div class="hidden md:flex md:items-center md:space-x-8">
+                <a href="/" class="nav-link text-white hover:text-blue-200 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Dashboard</a>
+                <a href="/budget" class="nav-link text-white hover:text-blue-200 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Budget</a>
+                <a href="/transactions" class="nav-link text-white hover:text-blue-200 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Transactions</a>
+                <a href="/account/new" class="nav-link text-white hover:text-blue-200 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Accounts</a>
+                <a href="/category/new" class="nav-link text-white hover:text-blue-200 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Categories</a>
+            </div>
+            
+            <!-- User Menu -->
+            <div class="flex items-center space-x-4">
+                <form th:action="@{/logout}" method="post" class="inline">
+                    <button type="submit" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors duration-200">
+                        <i class="fas fa-sign-out-alt mr-2"></i>Logout
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<script>
+// Add this script to highlight the current page
+document.addEventListener('DOMContentLoaded', function() {
+    const currentPath = window.location.pathname;
+    const navLinks = document.querySelectorAll('.nav-link');
+    
+    navLinks.forEach(link => {
+        if (link.getAttribute('href') === currentPath) {
+            link.classList.add('active');
+        }
+    });
+});
+</script>
