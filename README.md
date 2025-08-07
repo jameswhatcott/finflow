@@ -57,7 +57,7 @@ mvn spring-boot:run
 ### 4. Access the Application
 Open your browser and navigate to:
 ```
-http://localhost:8080
+http://localhost:8081
 ```
 
 ## 📖 Usage Guide
@@ -65,7 +65,7 @@ http://localhost:8080
 ### Initial Setup
 
 1. **Register a New Account**
-   - Visit `http://localhost:8080/register`
+   - Visit `http://localhost:8081/register`
    - Fill in your details (name, email, username, password)
    - Click "Register"
 
@@ -179,7 +179,7 @@ spring.jpa.hibernate.ddl-auto=update
    Add these environment variables in Render:
    ```
    SPRING_PROFILES_ACTIVE=prod
-   SERVER_PORT=8080
+   SERVER_PORT=8081
    ```
 
 5. **Database Setup**
