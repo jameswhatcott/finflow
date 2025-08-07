@@ -119,70 +119,64 @@ function updateSaveButton(type) {
 function addRow(type) {
     console.log('addRow called with type:', type);
     
-    const table = document.getElementById(`${type}-table`);
-    console.log('Found table:', table);
-    
-    if (!table) {
-        console.error('Table not found for type:', type);
-        return;
-    }
-    
-    const tbody = table.querySelector('tbody');
+    // The tbody element itself has the ID, not the table
+    const tbody = document.getElementById(`${type}-table`);
     console.log('Found tbody:', tbody);
     
     if (!tbody) {
-        console.error('Tbody not found');
+        console.error('Tbody not found for type:', type);
         return;
     }
     
-    const totalRow = tbody.querySelector('.table-total');
-    console.log('Found total row:', totalRow);
-    
-    if (!totalRow) {
-        console.error('Total row not found');
-        return;
-    }
-    
+    // Create new row with proper HTML structure
     const newRow = document.createElement('tr');
-    newRow.className = 'data-row';
+    newRow.className = 'data-row hover:bg-gray-50';
     newRow.innerHTML = `
-        <td class="readonly-cell">
-            <span class="category-display">New Category</span>
-            <input type="text" 
-                   class="editable-input category-input" 
-                   value="New Category" 
-                   data-original="New Category"
-                   data-type="${type}"
-                   data-index="new"
-                   style="display: none;">
+        <td class="px-6 py-4 whitespace-nowrap">
+            <div class="readonly-cell">
+                <span class="category-display text-sm font-medium text-gray-900">New Category</span>
+                <input type="text" 
+                       class="editable-input category-input hidden w-full px-3 py-2 border border-gray-300 rounded-md" 
+                       value="New Category" 
+                       data-original="New Category"
+                       data-type="${type}"
+                       data-index="new">
+            </div>
         </td>
-        <td class="readonly-cell">
-            <span class="amount-display">$0.00</span>
-            <input type="number" 
-                   class="editable-input amount-input" 
-                   value="0.00" 
-                   data-original="0.00"
-                   data-type="${type}"
-                   data-index="new"
-                   step="0.01" 
-                   min="0" 
-                   placeholder="0.00"
-                   style="display: none;">
+        <td class="px-6 py-4 whitespace-nowrap">
+            <div class="readonly-cell">
+                <span class="amount-display text-sm text-gray-900">$0.00</span>
+                <input type="number" 
+                       class="editable-input amount-input hidden w-full px-3 py-2 border border-gray-300 rounded-md" 
+                       value="0.00" 
+                       data-original="0.00"
+                       data-type="${type}"
+                       data-index="new"
+                       step="0.01" 
+                       min="0" 
+                       placeholder="0.00">
+            </div>
         </td>
-        <td class="readonly-cell amount-cell amount-${type === 'income' ? 'positive' : 'negative'}">$0.00</td>
-        <td class="readonly-cell amount-cell amount-neutral">$0.00</td>
-        <td class="actions-cell">
-            <button class="edit-row-btn" data-type="${type}" title="Edit">
-                <i class="fas fa-pencil-alt"></i>
-            </button>
-            <button class="delete-row-btn" data-type="${type}" title="Delete">
-                <i class="fas fa-trash"></i>
-            </button>
+        <td class="px-6 py-4 whitespace-nowrap">
+            <span class="text-sm ${type === 'income' ? 'text-green-600' : 'text-red-600'} font-medium">$0.00</span>
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap">
+            <span class="text-sm font-medium text-gray-600">$0.00</span>
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+            <div class="flex items-center space-x-2">
+                <button type="button" onclick="editRow(this)" class="text-blue-600 hover:text-blue-900 transition-colors duration-200">
+                    <i class="fas fa-edit"></i>
+                </button>
+                <button type="button" onclick="deleteRow(this)" class="text-red-600 hover:text-red-900 transition-colors duration-200">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </div>
         </td>
     `;
     
     console.log('Created new row:', newRow);
-    tbody.insertBefore(newRow, totalRow);
+    tbody.appendChild(newRow);
     console.log('Row inserted successfully');
     
     // Add event listeners to new inputs
@@ -198,18 +192,6 @@ function addRow(type) {
                 this.blur();
             }
         });
-    });
-    
-    // Add event listener to new edit button
-    const editBtn = newRow.querySelector('.edit-row-btn');
-    editBtn.addEventListener('click', function() {
-        editRow(this);
-    });
-    
-    // Add event listener to new delete button
-    const deleteBtn = newRow.querySelector('.delete-row-btn');
-    deleteBtn.addEventListener('click', function() {
-        deleteRow(this);
     });
     
     console.log('Event listeners added to new inputs');
